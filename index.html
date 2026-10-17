@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <a class="skip" href="#about">Skip to content</a>
@@ -27,7 +27,22 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <button class="sound" type="button" aria-pressed="true" aria-label="Sound effects"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sound-label">Sound on</span></button>
+  <div class="sound-wrap">
+    <button class="sound" type="button" aria-expanded="false" aria-controls="soundPanel" aria-label="Sound settings"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sound-label">Sound</span></button>
+    <div class="sound-panel" id="soundPanel" hidden>
+      <div class="sp-row">
+        <button class="sp-switch" type="button" role="switch" aria-checked="true" data-k="music" aria-labelledby="spMusic"><span></span></button>
+        <span class="sp-name" id="spMusic">Background music</span>
+        <input class="sp-vol" type="range" min="0" max="1" step="0.01" data-k="musicVol" aria-label="Background music volume">
+      </div>
+      <div class="sp-row">
+        <button class="sp-switch" type="button" role="switch" aria-checked="true" data-k="fx" aria-labelledby="spFx"><span></span></button>
+        <span class="sp-name" id="spFx">Sound effects</span>
+        <input class="sp-vol" type="range" min="0" max="1" step="0.01" data-k="fxVol" aria-label="Sound effects volume">
+      </div>
+      <p class="sp-note">Lo-fi loop generated live in your browser.</p>
+    </div>
+  </div>
   <a class="btn btn-lime btn-sm nav-cv" href="assets/Emelio_Exaudi_CV.pdf?v=2" download>Download CV</a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span></button>
 </header>
@@ -224,8 +239,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="sound.js?v=1"></script>
+<script src="sound.js?v=2"></script>
 <script src="data.js?v=1"></script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

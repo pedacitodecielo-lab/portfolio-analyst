@@ -289,14 +289,26 @@
   $(".sl-next").addEventListener("click", () => slides.scrollBy({ left: slides.clientWidth, behavior: "smooth" }));
 
   /* ======================= sound: hover/click on anything interactive, plus the toggle ======================= */
-  const soundBtn = $(".sound");
+  const soundBtn = $(".sound"), soundPanel = $("#soundPanel");
+  const SET = { music: SFX.setMusic, fx: SFX.setFx, musicVol: SFX.setMusicVol, fxVol: SFX.setFxVol };
   const paintSound = () => {
-    soundBtn.setAttribute("aria-pressed", SFX.on);
-    $(".sound-label", soundBtn).textContent = SFX.on ? "Sound on" : "Sound off";
-    soundBtn.classList.toggle("off", !SFX.on);
+    const st = SFX.settings;
+    $$(".sp-switch", soundPanel).forEach((b) => b.setAttribute("aria-checked", !!st[b.dataset.k]));
+    $$(".sp-vol", soundPanel).forEach((r) => { r.value = st[r.dataset.k]; r.style.setProperty("--fill", `${st[r.dataset.k] * 100}%`); r.disabled = !st[r.dataset.k.replace("Vol", "")]; });
+    soundBtn.classList.toggle("off", !SFX.musicPlaying && !st.fx);
+    soundBtn.classList.toggle("live", SFX.musicPlaying);
   };
   paintSound();
-  soundBtn.addEventListener("click", () => { SFX.set(!SFX.on); paintSound(); });
+  SFX.onChange(paintSound);
+  const setPanel = (open) => {
+    soundBtn.setAttribute("aria-expanded", open); soundPanel.hidden = !open;
+    if (open) gsap.fromTo(soundPanel, { opacity: 0, y: -8 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" });
+  };
+  soundBtn.addEventListener("click", () => setPanel(soundPanel.hidden));
+  $$(".sp-switch", soundPanel).forEach((b) => b.addEventListener("click", () => { SET[b.dataset.k](b.getAttribute("aria-checked") !== "true"); paintSound(); }));
+  $$(".sp-vol", soundPanel).forEach((r) => r.addEventListener("input", () => { SET[r.dataset.k](+r.value); r.style.setProperty("--fill", `${r.value * 100}%`); }));
+  document.addEventListener("click", (e) => { if (!soundPanel.hidden && !e.target.closest(".sound-wrap")) setPanel(false); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && !soundPanel.hidden) { setPanel(false); soundBtn.focus(); } });
   const INTERACTIVE = "a, button, .card, summary, [role='button']";
   let hovered = null;
   document.addEventListener("pointerover", (e) => {
