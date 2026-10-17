@@ -33,7 +33,7 @@
   const TOOLS = [
     ["BI & tools", "Power BI (DAX), Tableau, MS Excel, Word, PowerPoint, Figma, QGIS, Google Earth Engine, WRF, WRF-Hydro"],
     ["Languages", "Python (pandas, xarray), R (RStudio), SQL, NoSQL, MATLAB, HTML/CSS/JavaScript, Linux/Bash"],
-    ["Methods", "Statistical modeling, machine learning, anomaly detection, web scraping, ETL, data visualization, geospatial analysis"],
+    ["Methods", "Statistical modeling, machine learning, AI-assisted analysis with LLMs, anomaly detection, web scraping, ETL, data visualization, geospatial analysis"],
     ["Spoken languages", "Indonesian (native), English (professional working proficiency)"],
   ];
   const ICONS = {
