@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 <a class="skip" href="#about">Skip to content</a>
@@ -98,6 +98,23 @@
     <figure class="about-photo">
       <img src="assets/with-a-friend.webp" alt="Emelio lying on a wooden floor, smiling and hugging a white and grey dog" width="1600" height="1066" loading="lazy">
       <figcaption>Off the clock, with a new friend.</figcaption>
+    </figure>
+  </section>
+
+  <!-- HOUSEHOLD: me, Kucrut and Lemon as the rows of a query -->
+  <section class="section household" id="household" aria-labelledby="hhTitle">
+    <div class="section-head">
+      <p class="comment">-- household</p>
+      <h2 id="hhTitle">Meet the household</h2>
+    </div>
+    <figure class="sheet hh-sheet" aria-label="SQL query listing the members of my household">
+      <div class="sheet-code"><ol class="code" id="hhCode"></ol></div>
+      <div class="sheet-bar">
+        <button class="run" id="hhRun" type="button">Run <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v8M2.5 5.5 6 9l3.5-3.5"/></svg></button>
+        <span class="status" id="hhStatus" aria-live="polite"></span>
+        <span class="hint">Click a card to say hi</span>
+      </div>
+      <div class="result"><ul class="hh-grid" id="hhGrid"></ul></div>
     </figure>
   </section>
 
@@ -239,8 +256,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="sound.js?v=2"></script>
+<script src="sound.js?v=3"></script>
 <script src="data.js?v=1"></script>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>

@@ -160,6 +160,39 @@
     gsap.to(".hero-photo img", { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   } else typeQuery();
 
+  /* ======================= household: a query whose rows are me, Kucrut and Lemon ======================= */
+  const HOUSEHOLD = [
+    { name: "Emelio", species: "human", img: "assets/household/emelio-cartoon.webp", alt: "Cartoon portrait of Emelio in a blue jacket", say: "hi" },
+    { name: "Kucrut", species: "dog", img: "assets/household/kucrut.webp", alt: "Kucrut, a fluffy golden dog, licking its nose", say: "woof" },
+    { name: "Lemon", species: "cat", img: "assets/household/lemon.webp", alt: "Lemon, a ginger and white cat, sitting", say: "meow" },
+  ];
+  const HH_SQL = [
+    [["k", "SELECT"], ["", " name, species"]],
+    [["k", "FROM"], ["", " household"]],
+    [["k", "ORDER BY"], ["", " name;"]],
+  ];
+  const hhGrid = $("#hhGrid"), hhStatus = $("#hhStatus"), hhRun = $("#hhRun"), hhCode = $("#hhCode");
+  hhGrid.innerHTML = HOUSEHOLD.map((m) => `<li><button class="hh-card" type="button" data-say="${m.say}" aria-label="Say hi to ${m.name}">
+      <span class="hh-stage"><img src="${m.img}" alt="${esc(m.alt)}" loading="lazy"></span>
+      <span class="hh-row"><span><small>name</small>${m.name}</span><span><small>species</small>${m.species}</span></span>
+    </button></li>`).join("");
+  const hhCards = $$(".hh-card", hhGrid);
+  function showHousehold() {
+    SFX.success();
+    hhStatus.textContent = `${HOUSEHOLD.length} rows returned`;
+    if (reduce) { gsap.set(hhCards, { opacity: 1 }); return; }
+    gsap.fromTo(hhCards, { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.14, ease: "back.out(1.6)" });
+  }
+  gsap.set(hhCards, { opacity: reduce ? 1 : 0 });
+  hhCode.innerHTML = HH_SQL.map(() => "<li></li>").join("");
+  const typeHousehold = typer(hhCode, HH_SQL, hhRun, hhStatus, showHousehold);
+  ScrollTrigger.create({ trigger: ".hh-sheet", start: "top 75%", once: true, onEnter: typeHousehold });
+  hhRun.addEventListener("click", () => { hhStatus.textContent = "Running…"; gsap.set(hhCards, { opacity: 0 }); setTimeout(showHousehold, 300); });
+  hhCards.forEach((c) => c.addEventListener("click", () => {
+    SFX[c.dataset.say]();
+    if (!reduce) gsap.fromTo($("img", c), { y: 0, rotation: 0 }, { keyframes: [{ y: -22, rotation: -4, duration: 0.18, ease: "power2.out" }, { y: 0, rotation: 0, duration: 0.5, ease: "bounce.out" }] });
+  }));
+
   /* ======================= services ======================= */
   $("#services-grid").innerHTML = SERVICES.map((s) => `<li class="service">
     <div class="service-img"><img src="${pic(s.project.cover, 800)}" alt="" loading="lazy"></div>

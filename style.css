@@ -154,6 +154,20 @@ p{margin:0 0 1rem}
 .about-photo figcaption{margin-top:.8rem;font-family:var(--mono);font-size:.85rem;color:var(--text)}
 .about-photo figcaption::before{content:"-- ";color:var(--lime)}
 
+/* ---------- household ---------- */
+.hh-sheet{max-width:62rem}
+.hint{margin-left:auto;font-family:var(--mono);font-size:.75rem;color:#5b636b}
+.hh-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.hh-card{display:flex;flex-direction:column;width:100%;height:100%;background:#fff;border:1px solid #9aa3aa;text-align:left;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.hh-card:hover{border-color:var(--mark);box-shadow:0 0 0 2px var(--mark)}
+.hh-stage{position:relative;display:grid;place-items:end center;height:15rem;padding-top:1rem;overflow:hidden;background:radial-gradient(circle at 50% 115%,var(--lime) 0 42%,#eef4f7 42.5%)}
+.hh-stage img{height:94%;width:auto;max-width:92%;object-fit:contain;transform-origin:50% 100%;transition:transform .35s var(--ease)}
+.hh-card:hover .hh-stage img{transform:translateY(-6px) rotate(-1.5deg)}
+.hh-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #9aa3aa}
+.hh-row>span{padding:.6rem .8rem;color:#22272c;font-weight:600}
+.hh-row>span+span{border-left:1px solid #9aa3aa}
+.hh-row small{display:block;font-family:var(--mono);font-weight:400;font-size:.72rem;color:#5b636b}
+
 /* ---------- services ---------- */
 .service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem;list-style:none;margin:0;padding:0}
 .service{position:relative}
@@ -282,6 +296,7 @@ p{margin:0 0 1rem}
   .about{grid-template-columns:1fr}
   .about-photo{position:static}
   .service-grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hh-stage{height:12rem}
   .xp-row{grid-template-columns:1fr 1fr}
   .xp-row .span{grid-column:1/-1}
   .axis{display:none}
@@ -291,6 +306,9 @@ p{margin:0 0 1rem}
 }
 @media (max-width:640px){
   .service-grid,.project-grid{grid-template-columns:1fr}
+  .hh-grid{grid-template-columns:1fr}
+  .hh-stage{height:14rem}
+  .hint{display:none}
   .xp-row{grid-template-columns:1fr;gap:1rem}
   .edu div{grid-template-columns:1fr;gap:.2rem}
   .org-logo{width:3.6rem}

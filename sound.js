@@ -59,6 +59,28 @@ window.SFX = (() => {
     run() { if (!fxReady()) return; tone(420, 0.09, { type: "triangle", vol: 0.08, glide: 620 }); },
     success() { if (!fxReady()) return; [659, 880, 1319].forEach((f, i) => tone(f, 0.22, { type: "triangle", vol: 0.06, delay: i * 0.075 })); },
     open() { if (!fxReady()) return; noise(0.3, { vol: 0.05, freq: 600, q: 0.8, sweep: 3000 }); tone(330, 0.28, { vol: 0.05, glide: 660 }); },
+    woof() {
+      if (!fxReady()) return;
+      [0, 0.2].forEach((d) => {
+        const t = ctx.currentTime + d, o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+        o.type = "sawtooth"; o.frequency.setValueAtTime(320, t); o.frequency.exponentialRampToValueAtTime(140, t + 0.14);
+        f.type = "lowpass"; f.frequency.value = 900; f.Q.value = 4;
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+        o.connect(f).connect(g).connect(fxBus); o.start(t); o.stop(t + 0.2);
+        noise(0.08, { vol: 0.06, freq: 700, q: 1, delay: d });
+      });
+    },
+    meow() {
+      if (!fxReady()) return;
+      const t = ctx.currentTime, o = ctx.createOscillator(), lfo = ctx.createOscillator(), lg = ctx.createGain(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      o.type = "sawtooth";
+      o.frequency.setValueAtTime(520, t); o.frequency.linearRampToValueAtTime(880, t + 0.22); o.frequency.linearRampToValueAtTime(560, t + 0.6);
+      lfo.frequency.value = 6; lg.gain.value = 14; lfo.connect(lg).connect(o.frequency);
+      f.type = "bandpass"; f.frequency.setValueAtTime(900, t); f.frequency.linearRampToValueAtTime(1600, t + 0.25); f.frequency.linearRampToValueAtTime(800, t + 0.6); f.Q.value = 3;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.14, t + 0.06); g.gain.setValueAtTime(0.14, t + 0.4); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.65);
+      o.connect(f).connect(g).connect(fxBus); o.start(t); lfo.start(t); o.stop(t + 0.7); lfo.stop(t + 0.7);
+    },
+    hi() { if (!fxReady()) return; [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.18, { type: "triangle", vol: 0.06, delay: i * 0.06 })); },
     close() { if (!fxReady()) return; noise(0.22, { vol: 0.04, freq: 2600, q: 0.8, sweep: 500 }); tone(560, 0.2, { vol: 0.04, glide: 280 }); },
   };
 
