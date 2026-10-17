@@ -114,6 +114,7 @@
   const heroTable = () => `<table class="tbl"><thead><tr><th>name</th><th>role</th><th>based_in</th></tr></thead>
     <tbody><tr><td class="boxed">Emelio Exaudi<span class="mark"></span></td><td>Data Analyst</td><td>Bogor, Indonesia</td></tr></tbody></table>`;
   function showResult() {
+    SFX.success();
     heroResult.innerHTML = heroTable();
     heroStatus.textContent = "1 row returned";
     if (reduce) { $(".mark", heroResult).style.clipPath = "none"; return; }
@@ -135,9 +136,10 @@
         const len = lines[line].reduce((n, [, t]) => n + t.length, 0);
         ch++;
         lis[line].innerHTML = lineHTML(lines[line], ch) + '<span class="caret"></span>';
+        SFX.key();
         if (ch >= len) { lis[line].innerHTML = lineHTML(lines[line]); line++; ch = 0; }
         if (line < lines.length) setTimeout(step, ch === 0 ? 180 : 26 + Math.random() * 30);
-        else { statusEl.textContent = "Running…"; gsap.fromTo(runBtn, { scale: 0.94 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }); setTimeout(() => run === token && done(), 450); }
+        else { statusEl.textContent = "Running…"; SFX.run(); gsap.fromTo(runBtn, { scale: 0.94 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }); setTimeout(() => run === token && done(), 450); }
       };
       step();
     };
@@ -199,6 +201,7 @@
   ];
   const orgCode = $("#orgCode"), orgResult = $("#orgResult"), orgStatus = $("#orgStatus"), orgRun = $("#orgRun");
   function showOrgs() {
+    SFX.success();
     orgResult.innerHTML = `<table class="tbl org-tbl"><thead><tr><th>logo</th><th>organization</th><th class="org-role-col">role</th><th>joined</th></tr></thead><tbody>${ORGS.map((o, i) => `<tr>
       <td class="org-logo${i === 0 ? " boxed" : ""}"><img src="${esc(o.logo)}" alt="" loading="lazy">${i === 0 ? '<span class="mark"></span>' : ""}</td>
       <td>${esc(o.name)}<small class="org-role">${esc(o.role)}</small></td><td class="org-role-col">${esc(o.role)}</td><td class="mono-cell">${o.joined}</td></tr>`).join("")}</tbody></table>`;
@@ -234,6 +237,7 @@
     const step = () => {
       if (run !== typingWhere) return;
       i++;
+      SFX.key();
       whereLine.innerHTML = `<span class="k">WHERE</span> topic = <span class="s">${esc(full.slice(0, i))}</span>${i < full.length ? '<span class="caret"></span>' : ";"}`;
       if (i < full.length) setTimeout(step, reduce ? 0 : 22);
     };
@@ -276,12 +280,32 @@
     $("#mContent").innerHTML = p.content || ""; // own CMS content, not user input
     lenis && lenis.stop();
     modal.showModal();
+    SFX.open();
   });
-  modal.addEventListener("close", () => lenis && lenis.start());
+  modal.addEventListener("close", () => { SFX.close(); lenis && lenis.start(); });
   $(".modal-close").addEventListener("click", () => modal.close());
   modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
   $(".sl-prev").addEventListener("click", () => slides.scrollBy({ left: -slides.clientWidth, behavior: "smooth" }));
   $(".sl-next").addEventListener("click", () => slides.scrollBy({ left: slides.clientWidth, behavior: "smooth" }));
+
+  /* ======================= sound: hover/click on anything interactive, plus the toggle ======================= */
+  const soundBtn = $(".sound");
+  const paintSound = () => {
+    soundBtn.setAttribute("aria-pressed", SFX.on);
+    $(".sound-label", soundBtn).textContent = SFX.on ? "Sound on" : "Sound off";
+    soundBtn.classList.toggle("off", !SFX.on);
+  };
+  paintSound();
+  soundBtn.addEventListener("click", () => { SFX.set(!SFX.on); paintSound(); });
+  const INTERACTIVE = "a, button, .card, summary, [role='button']";
+  let hovered = null;
+  document.addEventListener("pointerover", (e) => {
+    if (e.pointerType !== "mouse") return;
+    const el = e.target.closest(INTERACTIVE);
+    if (el && el !== hovered) SFX.hover();
+    hovered = el;
+  });
+  document.addEventListener("click", (e) => { const el = e.target.closest(INTERACTIVE); if (el && el !== soundBtn) SFX.click(); }, true);
 
   addEventListener("load", () => ScrollTrigger.refresh());
 })();
