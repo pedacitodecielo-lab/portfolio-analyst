@@ -50,7 +50,7 @@ p{margin:0 0 1rem}
 .nav{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;gap:2rem;padding:1.1rem var(--gut);transition:background-color .3s,backdrop-filter .3s,padding .3s}
 .nav.solid{background:rgba(12,12,8,.86);backdrop-filter:blur(10px);padding-block:.75rem;border-bottom:1px solid var(--line)}
 .brand{display:inline-flex;align-items:center;gap:.6rem;color:var(--white);font-weight:700;text-decoration:none;font-size:1.05rem}
-.brand-mark{width:2.1rem;height:auto;aspect-ratio:39/24.5;fill:var(--lime);flex:none;transition:transform .4s var(--ease)}
+.brand-mark{width:1.6rem;height:1.6rem;fill:var(--lime);flex:none;transition:transform .4s var(--ease)}
 .brand:hover .brand-mark{transform:rotate(-8deg) scale(1.08)}
 .nav nav{margin-left:auto}
 .nav-links{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0}
