@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emelio Exaudi | Data Analyst</title>
+<meta name="description" content="Emelio Exaudi, data analyst in Bogor, Indonesia. Python and SQL pipelines, Power BI and Tableau dashboards, and statistical models built on public and environmental data.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Emelio Exaudi, back to top"><span class="brand-mark" aria-hidden="true"></span>Emelio Exaudi</a>
+  <nav aria-label="Sections">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <a class="btn btn-lime btn-sm nav-cv" href="assets/Emelio_Exaudi_CV.pdf" download>Download CV</a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span></button>
+</header>
+<div class="mobile-nav" id="mobileNav" hidden>
+  <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a>
+  <a class="btn btn-lime" href="assets/Emelio_Exaudi_CV.pdf" download>Download CV</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO: circular portrait + a query that runs itself -->
+  <section class="hero">
+    <div class="hero-wedge" aria-hidden="true"></div>
+    <div class="hero-photo">
+      <div class="ring" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i></div>
+      <img src="assets/portrait-circle.webp" alt="Portrait of Emelio Exaudi" width="900" height="900" fetchpriority="high">
+    </div>
+    <div class="hero-copy">
+      <p class="hello">Hello, I'm Emelio</p>
+      <h1>Data analyst based in Bogor, Indonesia</h1>
+      <p class="lead">Meteorology graduate from Institut Teknologi Bandung who turns raw environmental and public data into analysis people can act on, with Python and SQL pipelines, Power BI and Tableau dashboards, and statistical models.</p>
+      <div class="hero-actions">
+        <a class="btn btn-lime" href="assets/Emelio_Exaudi_CV.pdf" download>Download CV <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v9m-4-4 4 4 4-4M2 14h12"/></svg></a>
+        <a class="btn btn-ghost" href="#projects">See projects</a>
+      </div>
+
+      <figure class="sheet hero-sheet" aria-label="SQL query that returns Emelio's profile">
+        <div class="sheet-code"><ol class="code" id="heroCode"></ol></div>
+        <div class="sheet-bar">
+          <button class="run" id="heroRun" type="button">Run <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v8M2.5 5.5 6 9l3.5-3.5"/></svg></button>
+          <span class="status" id="heroStatus" aria-live="polite"></span>
+        </div>
+        <div class="result" id="heroResult"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="about-copy">
+      <p class="comment">-- about me</p>
+      <h2>From weather models to the numbers businesses run on</h2>
+      <p>I studied meteorology at Institut Teknologi Bandung, where I spent most of my time cleaning, merging and modelling messy data: 20 years of satellite rain, river discharge from 12 WRF-Hydro runs, and CMIP6 climate projections.</p>
+      <p>Today I point the same habits at public and business data. I scrape what isn't published as a table, load it into SQL, check it twice, and turn it into dashboards and models that answer one clear question.</p>
+      <p>I hold myself to high standards and keep improving, one project at a time. Off the clock I play basketball, badminton and padel, play guitar and piano, and lose a few rounds of CS:GO, Valorant, FIFA or NBA 2K.</p>
+      <dl class="edu">
+        <div><dt>Education</dt><dd>B.Sc. Meteorology, Institut Teknologi Bandung, 2022 to 2026</dd></div>
+        <div><dt>Dean's List</dt><dd>Semester 7, GPA 4.00 of 4.00</dd></div>
+        <div><dt>Thesis</dt><dd>Land-use impact on peak discharge in DAS Sepaku (IKN), from 12 WRF-Hydro runs and 20 years of satellite rain</dd></div>
+        <div><dt>Award</dt><dd>National Finalist, IEEEBIG 2026 Business Case Competition, with ECOS</dd></div>
+      </dl>
+    </div>
+    <figure class="about-photo">
+      <img src="assets/with-a-friend.webp" alt="Emelio lying on a wooden floor, smiling and hugging a white and grey dog" width="1600" height="1066" loading="lazy">
+      <figcaption>Off the clock, with a new friend.</figcaption>
+    </figure>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section services" id="services">
+    <div class="section-head center">
+      <p class="comment">-- what I do</p>
+      <h2>Three things I can take off your plate</h2>
+    </div>
+    <div class="service-grid" id="services-grid"></div>
+  </section>
+
+  <!-- TOOLKIT as a query -->
+  <section class="section toolkit">
+    <div class="section-head">
+      <p class="comment">-- toolkit</p>
+      <h2>The tools behind the work</h2>
+    </div>
+    <figure class="sheet" aria-label="Toolkit table">
+      <div class="sheet-code"><ol class="code static">
+        <li><span class="k">SELECT</span> category, tools</li>
+        <li><span class="k">FROM</span> toolkit</li>
+        <li><span class="k">ORDER BY</span> category;</li>
+      </ol></div>
+      <div class="result"><table class="tbl" id="toolTable"></table></div>
+    </figure>
+  </section>
+
+  <!-- EXPERIENCE timeline -->
+  <section class="section experience" id="experience">
+    <div class="section-head center">
+      <p class="comment">-- experience</p>
+      <h2>Where I've worked and what I shipped</h2>
+    </div>
+    <div class="axis" aria-hidden="true" id="axis"></div>
+    <ol class="xp-list" id="xpList"></ol>
+    <h3 class="sub">Extracurricular activities</h3>
+    <ol class="xp-list" id="extraList"></ol>
+  </section>
+
+  <!-- NUMBERS band -->
+  <section class="band" aria-label="Numbers from my projects">
+    <ul class="logos" id="logos"></ul>
+    <ul class="counters" id="counters"></ul>
+  </section>
+
+  <!-- PROJECTS with a live WHERE filter -->
+  <section class="section projects" id="projects">
+    <div class="projects-head">
+      <div>
+        <p class="comment">-- projects</p>
+        <h2>Latest projects</h2>
+      </div>
+      <figure class="sheet sheet-inline" aria-label="Project filter">
+        <div class="sheet-code"><ol class="code static">
+          <li><span class="k">SELECT</span> * <span class="k">FROM</span> projects</li>
+          <li id="whereLine"><span class="k">WHERE</span> topic = <span class="s">'All'</span>;</li>
+        </ol></div>
+      </figure>
+    </div>
+    <div class="filters" role="group" aria-label="Filter projects by topic" id="filters"></div>
+    <p class="rows" id="rows" aria-live="polite"></p>
+    <ul class="project-grid" id="projectGrid"></ul>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section class="section certificates" id="certificates">
+    <div class="section-head center">
+      <p class="comment">-- certificates</p>
+      <h2>Certificates and test scores</h2>
+    </div>
+    <ul class="cert-grid" id="certGrid"></ul>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div class="footer-cta">
+    <h2>Have data that needs a clear answer?</h2>
+    <div class="hero-actions">
+      <a class="btn btn-lime" href="mailto:emelioexaudi@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/emelio-exaudi" target="_blank" rel="noopener">Message on LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Emelio Exaudi</a>
+      <p class="muted">Data analyst working with Python, SQL, Power BI and Tableau. Open to data analyst roles.</p>
+    </div>
+    <div>
+      <h3>Sections</h3>
+      <ul><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#certificates">Certificates</a></li></ul>
+    </div>
+    <div>
+      <h3>Elsewhere</h3>
+      <ul>
+        <li><a href="https://github.com/pedacitodecielo-lab" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://public.tableau.com/app/profile/emelio.exaudi" target="_blank" rel="noopener">Tableau Public</a></li>
+        <li><a href="https://www.linkedin.com/in/emelio-exaudi" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul><li>Bogor, Indonesia</li><li><a href="mailto:emelioexaudi@gmail.com">emelioexaudi@gmail.com</a></li></ul>
+    </div>
+  </div>
+  <p class="copy">© 2026 Emelio Joshia Exaudi Lumban Gaol</p>
+</footer>
+
+<dialog class="modal" id="modal" aria-labelledby="mTitle">
+  <button class="modal-close" type="button" aria-label="Close project">Close</button>
+  <div class="modal-body">
+    <p class="comment" id="mCat"></p>
+    <h3 id="mTitle"></h3>
+    <p class="m-sum" id="mSum"></p>
+    <div class="slider">
+      <button class="sl sl-prev" type="button" aria-label="Previous image">‹</button>
+      <div class="slides" id="mSlides"></div>
+      <button class="sl sl-next" type="button" aria-label="Next image">›</button>
+    </div>
+    <dl class="m-meta" id="mMeta"></dl>
+    <div class="m-content" id="mContent"></div>
+  </div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
