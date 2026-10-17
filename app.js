@@ -40,10 +40,6 @@
     pipe: '<svg viewBox="0 0 24 24"><path d="M4 6h10a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8h12M4 6l3-3M4 6l3 3"/></svg>',
     chart: '<svg viewBox="0 0 24 24"><path d="M3 21h18M6 17V10M11 17V5M16 17v-5M21 17V8"/></svg>',
     model: '<svg viewBox="0 0 24 24"><path d="M3 18c4 0 5-12 9-12s5 12 9 12M3 6h4M17 6h4"/></svg>',
-    rows: '<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M4 15h16M10 5v14"/></svg>',
-    search: '<svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg>',
-    doc: '<svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/></svg>',
-    people: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6M18 15c2 .5 3 2 3 5"/></svg>',
   };
   const byTitle = (re) => PROJECTS.find((p) => re.test(p.title)) || PROJECTS[0];
   const SERVICES = [
@@ -51,17 +47,12 @@
     { icon: "chart", title: "Dashboards people open", text: "Power BI and Tableau dashboards built around one decision, not a wall of charts.", proof: "4,165 tenders narrowed to an audit shortlist", project: byTitle(/Procurement/) },
     { icon: "model", title: "Statistical models and forecasts", text: "Anomaly detection, nowcasts and downscaled climate projections, with the assumptions written down.", proof: "FY2026 EBITDA nowcast of US$1.04B", project: byTitle(/Shopee/) },
   ];
-  const COUNTERS = [
-    { icon: "rows", n: 864000, label: "food prices automated into SQL" },
-    { icon: "search", n: 4165, label: "tenders scraped from 34 portals" },
-    { icon: "doc", n: 30, label: "quarters of Sea Ltd filings parsed" },
-    { icon: "people", n: 60, suffix: "+", label: "undergraduates taught" },
-  ];
-  const LOGOS = [
-    ["Institut Teknologi Bandung", F + "K8mAYqJ6qDQp0OdDQ7bt8YXwOI.png"],
-    ["PT Aneka Tambang Tbk. (ANTAM)", F + "33OEzNGbCg48GHmDeqwWP6ScozY.png"],
-    ["Indonesian Agency for Meteorology, Climatology, and Geophysics (BMKG)", F + "bQntW3L6A6NEGYD2y59CPol9KMA.png"],
-    ["Atmosphaira", F + "uIQQpAw4q3rmR9JKiyditnyc6Y.png"],
+  // ordered by when I joined, newest first, matching the query's ORDER BY
+  const ORGS = [
+    { logo: F + "33OEzNGbCg48GHmDeqwWP6ScozY.png", name: "PT Aneka Tambang Tbk. (ANTAM)", role: "Environmental Analyst Intern", joined: "2026-01" },
+    { logo: F + "bQntW3L6A6NEGYD2y59CPol9KMA.png", name: "Indonesian Agency for Meteorology, Climatology, and Geophysics (BMKG)", role: "Climate Change Analyst Intern", joined: "2025-07" },
+    { logo: F + "uIQQpAw4q3rmR9JKiyditnyc6Y.png", name: "Atmosphaira, Meteorology Student Association ITB", role: "Head of Research and Development Division", joined: "2025-05" },
+    { logo: F + "K8mAYqJ6qDQp0OdDQ7bt8YXwOI.png", name: "Institut Teknologi Bandung", role: "B.Sc. Meteorology student; teaching, laboratory and research assistant", joined: "2022-08" },
   ];
   const topicOf = (p) => {
     const c = p.category || "";
@@ -129,25 +120,29 @@
     gsap.from($$("th,td", heroResult), { opacity: 0, y: 6, duration: 0.35, stagger: 0.04, ease: "power2.out" });
     gsap.to($(".mark", heroResult), { clipPath: "inset(0 0% 0% 0)", duration: 0.7, delay: 0.35, ease: "power2.inOut" });
   }
-  let typing = 0;
-  function typeQuery() {
-    const run = ++typing;
-    heroResult.innerHTML = ""; heroStatus.textContent = "";
-    if (reduce) { heroCode.innerHTML = HERO_SQL.map((l) => `<li>${lineHTML(l)}</li>`).join(""); showResult(); return; }
-    heroCode.innerHTML = HERO_SQL.map(() => "<li></li>").join("");
-    const lis = $$("li", heroCode);
-    let line = 0, ch = 0;
-    const step = () => {
-      if (run !== typing) return;
-      const len = HERO_SQL[line].reduce((n, [, t]) => n + t.length, 0);
-      ch++;
-      lis[line].innerHTML = lineHTML(HERO_SQL[line], ch) + '<span class="caret"></span>';
-      if (ch >= len) { lis[line].innerHTML = lineHTML(HERO_SQL[line]); line++; ch = 0; }
-      if (line < HERO_SQL.length) setTimeout(step, ch === 0 ? 180 : 26 + Math.random() * 30);
-      else { heroStatus.textContent = "Running…"; gsap.fromTo(heroRun, { scale: 0.94 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }); setTimeout(() => run === typing && showResult(), 450); }
+  // types a query line by line into an <ol class="code">, presses Run, then calls done()
+  function typer(codeEl, lines, runBtn, statusEl, done) {
+    let token = 0;
+    return () => {
+      const run = ++token;
+      statusEl.textContent = "";
+      if (reduce) { codeEl.innerHTML = lines.map((l) => `<li>${lineHTML(l)}</li>`).join(""); done(); return; }
+      codeEl.innerHTML = lines.map(() => "<li></li>").join("");
+      const lis = $$("li", codeEl);
+      let line = 0, ch = 0;
+      const step = () => {
+        if (run !== token) return;
+        const len = lines[line].reduce((n, [, t]) => n + t.length, 0);
+        ch++;
+        lis[line].innerHTML = lineHTML(lines[line], ch) + '<span class="caret"></span>';
+        if (ch >= len) { lis[line].innerHTML = lineHTML(lines[line]); line++; ch = 0; }
+        if (line < lines.length) setTimeout(step, ch === 0 ? 180 : 26 + Math.random() * 30);
+        else { statusEl.textContent = "Running…"; gsap.fromTo(runBtn, { scale: 0.94 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }); setTimeout(() => run === token && done(), 450); }
+      };
+      step();
     };
-    step();
   }
+  const typeQuery = typer(heroCode, HERO_SQL, heroRun, heroStatus, showResult);
   heroRun.addEventListener("click", () => { heroStatus.textContent = "Running…"; heroResult.innerHTML = ""; setTimeout(showResult, 300); });
 
   // page-load sequence: wedge, photo, copy, then the query types itself
@@ -196,15 +191,28 @@
     gsap.fromTo(bar, { "--k": 0 }, { "--k": 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: bar, start: "top 88%", once: true } });
   });
 
-  /* ======================= band: logos + counters ======================= */
-  $("#logos").innerHTML = LOGOS.map(([n, src]) => `<li><img src="${src}" alt="${esc(n)}" loading="lazy"></li>`).join("");
-  $("#counters").innerHTML = COUNTERS.map((c) => `<li><span class="ic">${ICONS[c.icon]}</span><div><b data-n="${c.n}" data-suffix="${c.suffix || ""}">${c.n.toLocaleString("en-US")}${c.suffix || ""}</b><span>${c.label}</span></div></li>`).join("");
-  $$("#counters b").forEach((b) => {
-    if (reduce) return;
-    const end = +b.dataset.n, o = { v: 0 }, sfx = b.dataset.suffix;
-    b.textContent = "0" + sfx;
-    gsap.to(o, { v: end, duration: 1.8, ease: "power2.out", scrollTrigger: { trigger: b, start: "top 90%", once: true }, onUpdate: () => (b.textContent = Math.round(o.v).toLocaleString("en-US") + sfx) });
-  });
+  /* ======================= band: organizations as a query result ======================= */
+  const ORG_SQL = [
+    [["k", "SELECT"], ["", " logo, organization, role, joined"]],
+    [["k", "FROM"], ["", " affiliations"]],
+    [["k", "ORDER BY"], ["", " joined "], ["k", "DESC"], ["", ";"]],
+  ];
+  const orgCode = $("#orgCode"), orgResult = $("#orgResult"), orgStatus = $("#orgStatus"), orgRun = $("#orgRun");
+  function showOrgs() {
+    orgResult.innerHTML = `<table class="tbl org-tbl"><thead><tr><th>logo</th><th>organization</th><th class="org-role-col">role</th><th>joined</th></tr></thead><tbody>${ORGS.map((o, i) => `<tr>
+      <td class="org-logo${i === 0 ? " boxed" : ""}"><img src="${esc(o.logo)}" alt="" loading="lazy">${i === 0 ? '<span class="mark"></span>' : ""}</td>
+      <td>${esc(o.name)}<small class="org-role">${esc(o.role)}</small></td><td class="org-role-col">${esc(o.role)}</td><td class="mono-cell">${o.joined}</td></tr>`).join("")}</tbody></table>`;
+    orgStatus.textContent = `${ORGS.length} rows returned`;
+    if (reduce) { $(".mark", orgResult).style.clipPath = "none"; return; }
+    gsap.from($$("thead th", orgResult), { opacity: 0, y: 6, duration: 0.3, stagger: 0.05 });
+    gsap.from($$("tbody tr", orgResult), { opacity: 0, x: -24, duration: 0.5, stagger: 0.14, delay: 0.15, ease: "power3.out" });
+    gsap.from($$(".org-logo img", orgResult), { scale: 0.4, rotation: -12, duration: 0.6, stagger: 0.14, delay: 0.25, ease: "back.out(2)" });
+    gsap.to($(".mark", orgResult), { clipPath: "inset(0 0% 0% 0)", duration: 0.7, delay: 0.25 + 0.14 * ORGS.length, ease: "power2.inOut" });
+  }
+  const typeOrgs = typer(orgCode, ORG_SQL, orgRun, orgStatus, showOrgs);
+  orgCode.innerHTML = ORG_SQL.map(() => "<li></li>").join("");
+  ScrollTrigger.create({ trigger: ".band-sheet", start: "top 75%", once: true, onEnter: typeOrgs });
+  orgRun.addEventListener("click", () => { orgStatus.textContent = "Running…"; orgResult.innerHTML = ""; setTimeout(showOrgs, 300); });
 
   /* ======================= projects: WHERE filter ======================= */
   const grid = $("#projectGrid"), whereLine = $("#whereLine"), rows = $("#rows");

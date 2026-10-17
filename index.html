@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#about">Skip to content</a>
@@ -122,10 +122,22 @@
     <ol class="xp-list" id="extraList"></ol>
   </section>
 
-  <!-- NUMBERS band -->
-  <section class="band" aria-label="Numbers from my projects">
-    <ul class="logos" id="logos"></ul>
-    <ul class="counters" id="counters"></ul>
+  <!-- ORGANIZATIONS band: a query whose result rows carry the logos -->
+  <section class="band" aria-labelledby="orgTitle">
+    <div class="band-inner">
+      <div class="band-head">
+        <p class="comment">-- organizations</p>
+        <h2 id="orgTitle">Where my work has landed</h2>
+      </div>
+      <figure class="sheet band-sheet" aria-label="SQL query listing the organizations I have worked with">
+        <div class="sheet-code"><ol class="code" id="orgCode"></ol></div>
+        <div class="sheet-bar">
+          <button class="run" id="orgRun" type="button">Run <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v8M2.5 5.5 6 9l3.5-3.5"/></svg></button>
+          <span class="status" id="orgStatus" aria-live="polite"></span>
+        </div>
+        <div class="result" id="orgResult"></div>
+      </figure>
+    </div>
   </section>
 
   <!-- PROJECTS with a live WHERE filter -->
@@ -212,6 +224,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="data.js?v=1"></script>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

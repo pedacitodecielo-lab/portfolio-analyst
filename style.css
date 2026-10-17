@@ -161,17 +161,16 @@ p{margin:0 0 1rem}
 .span-bar::after{content:attr(data-len);position:absolute;right:0;bottom:calc(100% + 8px);padding:.1rem .45rem;border:1px solid var(--white);border-radius:6px;font-size:.7rem;color:var(--white);background:var(--black);white-space:nowrap;opacity:var(--k,1)}
 
 /* ---------- band ---------- */
-.band{background:var(--green);color:var(--black);padding:clamp(3rem,6vw,5rem) 0}
-.logos,.counters{width:var(--wrap);margin-inline:auto;list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
-.logos{margin-bottom:3rem;align-items:center}
-.logos li{display:grid;place-items:center;height:5.5rem}
-.logos img{max-height:5rem;max-width:80%;width:auto;filter:grayscale(1) contrast(1.15);mix-blend-mode:multiply;opacity:.9;transition:filter .3s,opacity .3s}
-.logos li:hover img{filter:none;opacity:1;mix-blend-mode:normal}
-.counters li{display:flex;align-items:center;gap:1rem;padding:1.4rem 1.2rem;background:rgba(255,255,255,.18)}
-.counters .ic{flex:none;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--black);display:grid;place-items:center}
-.counters .ic svg{width:1.2rem;height:1.2rem;fill:none;stroke:var(--white);stroke-width:1.6}
-.counters b{display:block;font-size:clamp(1.6rem,1.1rem + 1.4vw,2.2rem);line-height:1.1;color:var(--black);font-variant-numeric:tabular-nums}
-.counters span{font-size:.85rem;color:#13240f}
+.band{background:var(--green);color:var(--black);padding:clamp(3.5rem,7vw,6rem) 0}
+.band-inner{width:var(--wrap);margin-inline:auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.band .comment{color:var(--black)}
+.band h2{color:var(--black)}
+.band-sheet .sheet-code{min-height:calc(3 * 1.55em + 1.7rem)}
+.org-tbl td{vertical-align:middle}
+.org-logo{width:5.5rem;text-align:center}
+.org-logo img{width:3.4rem;height:3.4rem;object-fit:contain;margin:auto}
+.mono-cell{font-family:var(--mono);white-space:nowrap}
+.org-role{display:none}
 
 /* ---------- projects ---------- */
 .projects-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2rem;align-items:end;margin-bottom:2rem}
@@ -256,15 +255,18 @@ p{margin:0 0 1rem}
   .xp-row{grid-template-columns:1fr 1fr}
   .xp-row .span{grid-column:1/-1}
   .axis{display:none}
-  .projects-head{grid-template-columns:1fr}
-  .logos,.counters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .projects-head{grid-template-columns:minmax(0,1fr)}
+  .band-inner{grid-template-columns:minmax(0,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
   .service-grid,.project-grid{grid-template-columns:1fr}
   .xp-row{grid-template-columns:1fr;gap:1rem}
   .edu div{grid-template-columns:1fr;gap:.2rem}
-  .counters{grid-template-columns:1fr}
+  .org-logo{width:3.6rem}
+  .org-role-col{display:none}
+  .org-role{display:block;margin-top:.3rem;color:#5b636b;font-size:.78rem}
+  .org-logo img{width:2.4rem;height:2.4rem}
   .footer-grid{grid-template-columns:1fr}
   .tbl{font-size:.82rem}
 }
