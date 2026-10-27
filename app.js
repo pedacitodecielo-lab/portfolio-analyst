@@ -27,7 +27,7 @@
     { org: "Atmosphaira, Meteorology Student Association ITB", place: "Bandung", role: "Head of Research and Development Division", from: "2025-05", to: "2026-02", bullets: [
       "Led a 10-person team from hardware prototype and firmware to field deployment of an IoT water-level and rainfall instrument.",
       "Shipped a real-time web dashboard combining live instrument data with WRF-Hydro river-discharge forecasts." ] },
-    { org: "OSKM ITB 2024, Central New-Student Orientation", place: "Bandung", role: "Mentor", year: "2024", bullets: [
+    { org: "OSKM ITB 2023, Central New-Student Orientation", place: "Bandung", role: "Mentor", year: "2023", bullets: [
       "Guided new students through their introduction to the ITB campus environment." ] },
   ];
   const TOOLS = [
