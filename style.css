@@ -155,7 +155,10 @@ p{margin:0 0 1rem}
 .about-photo figcaption::before{content:"-- ";color:var(--lime)}
 
 /* ---------- graduation ---------- */
-.grad-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem;align-items:start}
+.edu-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:2rem 3rem;align-items:start;margin-bottom:2.5rem}
+.edu-lead{margin:.9rem 0 0;color:var(--lime);font-weight:600}
+.edu-side .edu{margin:0 0 1.4rem}
+.grad-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;align-items:start}
 .grad-grid li:nth-child(even){margin-top:3rem}
 .grad-item{display:block;width:100%;overflow:hidden;background:var(--panel);cursor:zoom-in;position:relative}
 .grad-item img{width:100%;aspect-ratio:2/3;object-fit:cover;transition:transform .8s var(--ease),filter .4s}
@@ -316,7 +319,8 @@ p{margin:0 0 1rem}
   .xp-row{grid-template-columns:1fr 1fr}
   .xp-row .span{grid-column:1/-1}
   .axis{display:none}
-  .projects-head{grid-template-columns:minmax(0,1fr)}
+  .projects-head,.edu-head{grid-template-columns:minmax(0,1fr)}
+  .grad-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .band-inner{grid-template-columns:minmax(0,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
 }

@@ -162,6 +162,7 @@
 
   /* ======================= graduation gallery + lightbox ======================= */
   const GRAD = [
+    { n: 0, alt: "Emelio in a navy suit and ITB graduation medal, sitting on a staircase" },
     { n: 1, alt: "Emelio in a navy suit and ITB medal, leaning on a wooden railing between two ITB buildings" },
     { n: 2, alt: "Emelio sitting on the lawn in front of an ITB building, holding the diploma folder" },
     { n: 3, alt: "Emelio leaning on a white railing next to a tree and a lamp post" },

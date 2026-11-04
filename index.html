@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 <a class="skip" href="#about">Skip to content</a>
@@ -88,12 +88,6 @@
       <p>I studied meteorology at Institut Teknologi Bandung, where I spent most of my time cleaning, merging and modelling messy data: 20 years of satellite rain, river discharge from 12 WRF-Hydro runs, and CMIP6 climate projections.</p>
       <p>Today I point the same habits at public and business data. I scrape what isn't published as a table, load it into SQL, check it twice, and turn it into dashboards and models that answer one clear question.</p>
       <p>I hold myself to high standards and keep improving, one project at a time. Off the clock I play basketball, badminton and padel, play guitar and piano, and lose a few rounds of CS:GO, Valorant, FIFA or NBA 2K.</p>
-      <dl class="edu">
-        <div><dt>Education</dt><dd>B.Sc. Meteorology, Institut Teknologi Bandung, 2022 to 2026</dd></div>
-        <div><dt>Semester 7 GPA</dt><dd>4.00 of 4.00</dd></div>
-        <div><dt>Thesis</dt><dd>Land-use impact on peak discharge in DAS Sepaku (IKN), from 12 WRF-Hydro runs and 20 years of satellite rain</dd></div>
-        <div><dt>Award</dt><dd>National Finalist, IEEEBIG 2026 Business Case Competition, with ECOS</dd></div>
-      </dl>
     </div>
     <figure class="about-photo">
       <img src="assets/with-a-friend.webp" alt="Emelio lying on a wooden floor, smiling and hugging a white and grey dog" width="1600" height="1066" loading="lazy">
@@ -101,23 +95,31 @@
     </figure>
   </section>
 
-  <!-- GRADUATION gallery -->
-  <section class="section graduation" id="graduation" aria-labelledby="gradTitle">
-    <div class="projects-head">
+  <!-- EDUCATION: facts plus campus photos -->
+  <section class="section graduation" id="education" aria-labelledby="gradTitle">
+    <div class="edu-head">
       <div>
-        <p class="comment">-- graduation</p>
-        <h2 id="gradTitle">Graduation day at ITB</h2>
+        <p class="comment">-- education</p>
+        <h2 id="gradTitle">Institut Teknologi Bandung</h2>
+        <p class="edu-lead">B.Sc. Meteorology, 2022 to 2026</p>
       </div>
-      <figure class="sheet sheet-inline" aria-label="SQL query for the graduation photos">
-        <div class="sheet-code"><ol class="code static">
-          <li><span class="k">SELECT</span> photo <span class="k">FROM</span> gallery</li>
-          <li><span class="k">WHERE</span> event = <span class="s">'graduation'</span>;</li>
-        </ol></div>
-      </figure>
+      <div class="edu-side">
+        <dl class="edu">
+        <div><dt>Semester 7 GPA</dt><dd>4.00 of 4.00</dd></div>
+        <div><dt>Thesis</dt><dd>Land-use impact on peak discharge in DAS Sepaku (IKN), from 12 WRF-Hydro runs and 20 years of satellite rain</dd></div>
+        <div><dt>Award</dt><dd>National Finalist, IEEEBIG 2026 Business Case Competition, with ECOS</dd></div>
+      </dl>
+        <figure class="sheet sheet-inline" aria-label="SQL query for the campus photos">
+          <div class="sheet-code"><ol class="code static">
+            <li><span class="k">SELECT</span> photo <span class="k">FROM</span> gallery</li>
+            <li><span class="k">WHERE</span> campus = <span class="s">'ITB'</span>;</li>
+          </ol></div>
+        </figure>
+      </div>
     </div>
     <ul class="grad-grid" id="gradGrid"></ul>
   </section>
-  <dialog class="lightbox" id="lightbox" aria-label="Graduation photo">
+  <dialog class="lightbox" id="lightbox" aria-label="Photo at Institut Teknologi Bandung">
     <button class="lb-close" type="button" aria-label="Close photo">Close</button>
     <button class="sl lb-prev" type="button" aria-label="Previous photo">‹</button>
     <img id="lbImg" src="" alt="">
@@ -282,6 +284,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="sound.js?v=3"></script>
 <script src="data.js?v=1"></script>
-<script src="app.js?v=11"></script>
+<script src="app.js?v=13"></script>
 </body>
 </html>
