@@ -160,6 +160,32 @@
     gsap.to(".hero-photo img", { yPercent: 8, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   } else typeQuery();
 
+  /* ======================= graduation gallery + lightbox ======================= */
+  const GRAD = [
+    { n: 1, alt: "Emelio in a navy suit and ITB medal, leaning on a wooden railing between two ITB buildings" },
+    { n: 2, alt: "Emelio sitting on the lawn in front of an ITB building, holding the diploma folder" },
+    { n: 3, alt: "Emelio leaning on a white railing next to a tree and a lamp post" },
+    { n: 4, alt: "Emelio standing behind a white railing under a large green tree" },
+  ];
+  const gradGrid = $("#gradGrid"), lb = $("#lightbox"), lbImg = $("#lbImg"), lbCount = $("#lbCount");
+  gradGrid.innerHTML = GRAD.map((g, i) => `<li><button class="grad-item" type="button" data-i="${i}" aria-label="Open photo ${i + 1} of ${GRAD.length}">
+    <img src="assets/graduation/grad-${g.n}.webp" alt="${esc(g.alt)}" width="520" height="779" loading="lazy"></button></li>`).join("");
+  let lbAt = 0;
+  const showLb = (i) => {
+    lbAt = (i + GRAD.length) % GRAD.length;
+    lbImg.src = `assets/graduation/grad-${GRAD[lbAt].n}-lg.webp`; lbImg.alt = GRAD[lbAt].alt;
+    lbCount.textContent = `${lbAt + 1} / ${GRAD.length}`;
+    if (!reduce) gsap.fromTo(lbImg, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" });
+  };
+  gradGrid.addEventListener("click", (e) => { const b = e.target.closest(".grad-item"); if (!b) return; showLb(+b.dataset.i); lenis && lenis.stop(); lb.showModal(); SFX.open(); });
+  lb.addEventListener("close", () => { SFX.close(); lenis && lenis.start(); });
+  $(".lb-close").addEventListener("click", () => lb.close());
+  $(".lb-prev").addEventListener("click", () => showLb(lbAt - 1));
+  $(".lb-next").addEventListener("click", () => showLb(lbAt + 1));
+  lb.addEventListener("click", (e) => { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") showLb(lbAt - 1); if (e.key === "ArrowRight") showLb(lbAt + 1); });
+  if (!reduce) gsap.from(".grad-item", { y: 60, opacity: 0, duration: 0.9, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: gradGrid, start: "top 80%", once: true } });
+
   /* ======================= household: a query whose rows are me, Kucrut and Lemon ======================= */
   const HOUSEHOLD = [
     { name: "Emelio", species: "human", img: "assets/household/emelio-cartoon.webp", alt: "Cartoon portrait of Emelio in a blue jacket", say: "hi" },
