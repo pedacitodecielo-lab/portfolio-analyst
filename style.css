@@ -158,6 +158,8 @@ p{margin:0 0 1rem}
 .edu-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:2rem 3rem;align-items:start;margin-bottom:2.5rem}
 .edu-lead{margin:.9rem 0 0;color:var(--lime);font-weight:600}
 .edu-side .edu{margin:0 0 1.4rem}
+.thesis{font-style:normal;color:var(--white)}
+.edu-note{display:block;margin-top:.35rem;font-family:var(--mono);font-size:.78rem;color:var(--text)}
 .grad-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem;align-items:start}
 .grad-grid li:nth-child(even){margin-top:3rem}
 .grad-item{display:block;width:100%;overflow:hidden;background:var(--panel);cursor:zoom-in;position:relative}
