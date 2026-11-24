@@ -1,6 +1,23 @@
 // Generated from the Framer CMS export (_framer_dump.json). Edit freely.
 window.PROJECTS=[
  {
+  "slug": "sortation-hub-digital-twin",
+  "title": "Sortation Hub Digital Twin",
+  "summary": "A 3D what-if planning tool for a last-mile parcel hub: test inbound docks, inductors, van waves, an 11.11 peak and rain before the busy day, and see where the bottleneck moves. In a simulated 11.11 peak, on-time dispatch fell to 38.7% with 6 inductors and 1 van wave; 8 inductors and 2 waves brought it back to 100%.",
+  "cover": "assets/projects/sortation-hub-cover.jpg",
+  "category": "Data Analysis · Operations Simulation",
+  "tools": "JavaScript, Three.js, simulation",
+  "client": "Personal project (simulated data)",
+  "date": "2026-11-17",
+  "content": "<h2 dir=\"auto\">Overview</h2><p dir=\"auto\">A browser-based 3D twin of a generic last-mile sortation hub, built as a what-if tool for a hub shift lead or BI analyst. Parcels flow from linehaul trucks through unloading, a buffer, induction, the scan and sorter loop, route chutes and staging to outbound vans, with exceptions going to QC or the returns cage.</p><h2 dir=\"auto\">What you can change</h2><p dir=\"auto\">Inbound docks, sorter capacity per hour, inductors, van waves per hour, weather (dry, rainy season, storm) and an 11.11 peak that multiplies arrivals by 1.8. Tabs cover overview, inbound, sortation, outbound, exceptions, weather and capacity, and any truck, van, cage or worker can be clicked for details.</p><h2 dir=\"auto\">Simulated findings</h2><ul dir=\"auto\"><li data-preset-tag=\"p\"><p>11.11 peak with 4 docks: on-time dispatch was 38.7% with 6 inductors and 1 van wave, and 100% with 8 inductors and 2 van waves.</p></li><li data-preset-tag=\"p\"><p>Normal day: dock waits fell from about 21 minutes with 3 docks to 5 minutes with 4.</p></li><li data-preset-tag=\"p\"><p>Storm: a rain-aware ETA was off by about 4 minutes in rain, against 30 minutes for a dry-weather ETA.</p></li></ul><h2 dir=\"auto\">Honest limits</h2><p dir=\"auto\">All data is simulated for a generic hub, not real company data. Arrival rates, handling speeds and the weather effects are written-down assumptions, and a headless check confirms that every parcel is accounted for.</p>",
+  "gallery": [
+   "assets/projects/sortation-hub-cover.jpg",
+   "assets/projects/sortation-hub-inbound.jpg",
+   "assets/projects/sortation-hub-outbound.jpg"
+  ],
+  "link": null
+ },
+ {
   "slug": "shopee-monee-unit-economics-sec-filings",
   "title": "Shopee & Monee Unit Economics from Sea's Filings",
   "summary": "From 30 quarters of Sea's own filings: Shopee's take from fees and ads roughly doubled to 11.1% of GMV, yet EBITDA is only 0.67% of GMV; Monee's falling NPL ratio partly reflects fast loan growth; plus a FY2026 nowcast and an interactive simulator for the US$1 billion goal.",
