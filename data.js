@@ -310,7 +310,7 @@ window.PROJECTS=[
   "link": null
  }
 ];
-window.CERTS=[{"title":"Business Intelligence & Data Analyst (BIDA®)","issuer":"Corporate Finance Institute (CFI)","date":"2026-11-24","image":"https://framerusercontent.com/images/Y8NCr0wQ3FSZmJhn4jiqHX9fDc.png","pdf":"https://credentials.corporatefinanceinstitute.com/7e86a421-c0d9-485f-8814-f91ebd41a052","logo":"https://framerusercontent.com/images/rEwJ5FhbP9rC3rIWFVlA5fwO234.png","note":"14 core and 3 elective courses plus a timed exam, using Power BI, Power Query, Python, Excel and Tableau"},
+window.CERTS=[{"title":"Business Intelligence & Data Analyst (BIDA®)","issuer":"Corporate Finance Institute (CFI)","date":"2026-11-24","image":"https://framerusercontent.com/images/Y8NCr0wQ3FSZmJhn4jiqHX9fDc.png","pdf":"https://credentials.corporatefinanceinstitute.com/7e86a421-c0d9-485f-8814-f91ebd41a052","logo":"https://framerusercontent.com/images/mkSFfFywRxwgOHYFawPlXmyMlM.png","note":"14 core and 3 elective courses plus a timed exam, using Power BI, Power Query, Python, Excel and Tableau"},
  {"title":"TOEFL ITP","issuer":"ETS","date":"2026-10-16","pdf":"assets/TOEFL_ITP_Emelio_Exaudi.pdf","logo":"","note":"Score 523 (Listening 54, Structure 47, Reading 56)"},
  {
   "title": "Microsoft Power BI Data Analyst Professional Certificate",
